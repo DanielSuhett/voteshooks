@@ -1,0 +1,150 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5%;
+}
+
+.itemVote, .itemResult {
+  display: flex;
+  margin: 16px;
+  padding: 20px;
+  min-width: 332px;
+  min-height: 36px;
+  align-items: center;
+  border: none;
+  color: white;
+  font-size: 21px;
+  background-color: gray;
+}
+
+.itemResult {
+  justify-content: space-between;
+}
+
+.itemResult img {
+  width: 40px;
+}
+
+.title{
+  display: flex;
+  margin: 20px 0 0 0;
+  justify-content: center;
+}
+
+.subtitle {
+  margin-left: 140px;
+  color: gray;
+}
+
+.inputTitle {
+  background: none;
+  color: white;
+  border: none;
+  border-bottom: honeydew 3px solid;
+  text-align: center;
+  padding: 10px;
+  font-size: 24px;
+}
+
+.subcontent {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  min-width: 400px;
+}
+
+.voted img {
+  width: 32px;
+}
+
+.voted img:hover{
+  width: 36px;
+  -webkit-transition: width 0.1s; /* Safari prior 6.1 */
+  transition: width 0.1s;
+}
+
+.itemVote:hover{
+  background-color: #41A157;
+
+}
+
+.createItem {
+  display: flex;
+  margin: 16px;
+  padding: 16px;
+  min-width: 300px;
+  max-width: 300px;
+  width: 70%;
+  min-height: 36px;
+  align-items: center;
+  border: silver 1px solid;
+}
+
+.createItem::placeholder{
+  color: white;
+}
+
+.inputCreate {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid white;
+  padding-bottom: 4px;
+  background: none;
+  color: white;
+}
+
+.buttonCreate img {
+  width: 32px;
+  text-align: center;
+}
+
+.buttonCreate img:hover {
+    width: 36px;
+    -webkit-transition: width 0.1s; /* Safari prior 6.1 */
+    transition: width 0.1s;
+}
+
+.buttonCreate {
+  margin: 0 auto;
+  background: none;
+  border: none;
+  min-width: 50px;
+  min-height: 40px;
+}
+
+.footer img {
+  width: 40px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: tomato;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  opacity: 0.6;
+  color: black;
+}
+
+.textFooter {
+  margin-right: 10px;
+}
+
+.buttonTitle img { 
+  width: 30px;
+}
+
+.buttonTitle {
+  background: none;
+  border: none;
+  margin: 10px;
+}
