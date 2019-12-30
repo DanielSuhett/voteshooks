@@ -16,7 +16,7 @@ const userSchema = new Schema({
 
   salt: String,
 
-  data: [{ type: Schema.Types.ObjectId, ref: pollSchema }]
+  polls: [{ type: Schema.Types.ObjectId, ref: pollSchema }]
   
 });
 

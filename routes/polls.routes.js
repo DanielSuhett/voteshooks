@@ -3,6 +3,8 @@ const controller = require("../controllers/polls.controller");
 
 router.get("/", controller.getPolls);
 
+router.get("/:id", controller.getPoll);
+
 router.delete('/:id', controller.deletePoll);
 
 router.put("/:id", controller.updatePoll);

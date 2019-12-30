@@ -12,32 +12,33 @@ exports.createPoll = (req, res) => {
     })
     .then(user => {
       const poll = new pollModel();
+    
+      poll.question = req.body.question;
+      poll.userId = user._id;
 
       for (const option of req.body.options) {
         const { title, countVotes } = option;
 
         poll.options.push({
           title: title,
-          userId: user._id,
           count_votes: countVotes
         })
       }
 
       poll.save()
 
-      user.data.push(poll);
+      user.polls.push(poll);
 
       user.save().then(
         res.status(201).send({
-          create_poll: true,
-          poll
+          create_poll: true
         })
       );
     });
 };
 
 exports.getPolls = (req, res) => {
-  pollModel.find({ options: { $elemMatch: { userId: decodeTokenUserId(req.headers["x-access-token"]) } } },
+  pollModel.find({ userId: decodeTokenUserId(req.headers["x-access-token"])  },
     (err, polls) => {
       if (err) {
         console.log(`Error: ` + err);
@@ -52,12 +53,31 @@ exports.getPolls = (req, res) => {
   );
 };
 
-exports.updatePoll = (req, res) => {
-  pollModel.findOneAndUpdate({
-    options: { $elemMatch: { userId: decodeTokenUserId(req.headers["x-access-token"]) } },
+exports.getPoll = (req, res) => {
+  pollModel.findOne({
+    userId: decodeTokenUserId(req.headers["x-access-token"]), 
     _id: new mongoose.mongo.ObjectID(req.params.id)
   },
-  { options: req.body.options },
+    (err, poll) => {
+      if (err) {
+        console.log(`Error: ` + err);
+      } else {
+        if (poll.length === 0) {
+          res.status(404).send("Not found poll");
+        } else {
+          res.status(200).send(poll);
+        }
+      }
+    }
+  );
+};
+
+exports.updatePoll = (req, res) => {
+  pollModel.findOneAndUpdate({
+     userId: decodeTokenUserId(req.headers["x-access-token"]),
+    _id: new mongoose.mongo.ObjectID(req.params.id)
+  },
+  { question: req.body.question, options: req.body.options },
     (err, poll) => {
       if (err) res.status(500).send(err);
       else {
@@ -74,7 +94,7 @@ exports.updatePoll = (req, res) => {
 
 exports.deletePoll = (req, res) => {
   pollModel.findOneAndDelete({
-    options: { $elemMatch: { userId: decodeTokenUserId(req.headers["x-access-token"]) } },
+    userId: decodeTokenUserId(req.headers["x-access-token"]), 
     _id: new mongoose.mongo.ObjectID(req.params.id)
   },
     (err, poll) => {
