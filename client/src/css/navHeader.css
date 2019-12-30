@@ -1,0 +1,46 @@
+.navbar{
+  align-items: center;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid gray;
+}
+
+button {
+  background: none;
+  border-radius: 5px;
+  color: white;
+  border: 0.5px gray solid;
+  font-size: 20px;
+  margin: 5px;
+}
+
+.navTitle {
+  width: 70%;
+  height: 50px;
+  display: inline-flex;
+  font-size: 32px;
+}
+
+.Titletext {
+  color: white;
+  margin: auto 10px;
+}
+
+.buttonLogin, .buttonHome {
+  padding: 10px;
+  outline: none;  
+}
+
+.buttonLogin:hover, .buttonHome:hover{
+  background-color: gray;
+  color: white;
+  transition-timing-function: ease-in-out;
+  transition: 0.2s;
+  border-radius: 5px;
+}
+
+.buttonBlock{
+  display: flex;
+  float: right;
+}

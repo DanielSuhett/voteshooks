@@ -6,7 +6,7 @@ export default function footer() {
       <div className="footer">
           <span className="textFooter">star repo on</span>
           <a href="https://github.com/DanielSuhett/voteshooks"  rel="noopener noreferrer" target="_blank">
-            <img alt="github" src="img/github.png"></img>
+            <img alt="github" src="/img/github.png"></img>
           </a>
       </div>
     </>

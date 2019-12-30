@@ -1,35 +1,21 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-export default function Title() {
-
-  const [editTitle, setEditTitle] = useState({
-    title: 'Double tap to edit question',
-    editable: false
-  });
-
-  const handleEditTitle = (value) => {
-    setEditTitle({ ...editTitle, title: value })
-  }
-
-  const toggleEditTitle = () => {
-    setEditTitle({ ...editTitle, editable: !editTitle.editable })
-  }
-
+export default function Title(props) {
   return (
-    <h1 className="title" onDoubleClick={() => toggleEditTitle()}>
-      {editTitle.editable === true
+    <h1 className="title" onDoubleClick={() => props.toggleEditQuestion()}>
+      {props.question.editable === true
         ? <>
-          <input className="inputTitle" onChange={(e) => handleEditTitle(e.target.value)}
+          <input className="inputTitle" onChange={(e) => props.handleEditQuestion(e.target.value)}
             value={
-              editTitle.title === 'Double tap to edit question'
+              props.question.title === 'Double tap to edit question'
                 ? ''
-                : editTitle.title
+                : props.question.title
             } placeholder="Edit title"></input>
-          <button onClick={() => toggleEditTitle()} className="buttonTitle">
-            <img alt="" src="img/success.png"></img>
+          <button onClick={() => props.toggleEditQuestion()} className="buttonTitle">
+            <img alt="" src="/img/success.png"></img>
           </button>
         </>
-        : editTitle.title
+        : props.question.title
       }
     </h1>
   )
