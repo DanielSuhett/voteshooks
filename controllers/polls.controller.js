@@ -4,7 +4,7 @@ const userModel = require("../models/user");
 const decode = require("jwt-decode");
 
 exports.createPoll = (req, res) => {
-  userModel
+  userModel 
     .findOne({
       _id: new mongoose.mongo.ObjectId(
         decodeTokenUserId(req.headers["x-access-token"])

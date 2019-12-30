@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const pollSchema = new Schema({
   question: String,
-  userId: String,
+  userId: String, 
   options: [
     {
       title: String,

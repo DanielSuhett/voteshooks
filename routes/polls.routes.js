@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const controller = require("../controllers/polls.controller");
 
-router.get("/", controller.getPolls);
+router.get("/", controller.getPolls); 
 
 router.get("/:id", controller.getPoll);
 
