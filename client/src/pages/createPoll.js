@@ -26,7 +26,6 @@ export default function () {
 
   const postPoll = async () => {
     try {
-      console.log(listOption)
       if(listOption.length){
         await API.post('/poll/create', { question: question.title, options: listOption })
         setEditTitle({ ...question, title: '' });
@@ -47,7 +46,7 @@ export default function () {
       alert("Não é possível adicionar um opção vazia!")
     else
       setlistOption(
-        listOption.concat({ title: value, countVotes: 0 })
+        listOption.concat({ title: value, count_votes: 0 })
       )
   }
 

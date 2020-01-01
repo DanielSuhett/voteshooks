@@ -17,11 +17,11 @@ exports.createPoll = (req, res) => {
       poll.userId = user._id;
 
       for (const option of req.body.options) {
-        const { title, countVotes } = option;
+        const { title, count_votes } = option;
 
         poll.options.push({
           title: title,
-          count_votes: countVotes
+          count_votes: count_votes
         })
       }
 

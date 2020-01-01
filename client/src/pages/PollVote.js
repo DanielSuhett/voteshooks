@@ -23,21 +23,31 @@ export default function (props) {
       } catch (error) {
         alert(error)
       }
-    })();
+    })()
   }, [question, props.match.params.id])
+
+  const handleVote = async (index) => {
+    const updateList = listOption.map((option, ondex) => {
+      if(index === ondex)
+        option = { ...option, count_votes: option.count_votes + 1 };
+      return option
+    })
+
+    await API.put(`/poll/${props.match.params.id}`, { question: question.title, options: updateList })
+
+    history.push(`/vote/${props.match.params.id}/result/${index}`)
+  }
+
+  const history = useHistory();
 
   return (
     <>
       <Title question={question} />
       <div className="container">
-      <ul>
+        <ul>
           {listOption.map((vote, index) =>
-            <div key={index} className="subcontent">
-              <span className="itemResult" style={{ 
-                backgroundColor: index == props.match.params.index ? 'rgb(35, 148, 35)' : 'gray' 
-              }} key={index}>
-                {vote.title}<span>{<> { vote.count_votes }</>}</span>
-              </span>
+            <div key={index}  className="subcontent">
+              <button onClick={() => { handleVote(index) }} className="itemVote" key={index}> {vote.title} </button>
             </div>
           )}
         </ul>

@@ -11,8 +11,13 @@ export default function (props) {
 
   const [listOption, setlistOption] = useState([]);
 
+  const [question, setQuestion] = useState({
+    title: 'Double tap to edit question',
+    editable: false
+  });
+
   useEffect(() => {
-    const get = async () => {
+    (async () => {
       try {
         const response = await API.get(`/poll/${props.match.params.id}`)
         setlistOption(response.data.options)
@@ -20,16 +25,8 @@ export default function (props) {
       } catch (error) {
         alert(error)
       }
-    }
-
-    get();
-  }, [])
-
-
-  const [question, setQuestion] = useState({
-    title: 'Double tap to edit question',
-    editable: false
-  });
+    })()
+  }, [props.match.params.id, question])
 
   const handleEditQuestion = (value) => {
     setQuestion({ ...question, title: value })
@@ -50,7 +47,7 @@ export default function (props) {
       alert("Não é possível adicionar um opção vazia!")
     else
       setlistOption(
-        listOption.concat({ title: value, countVotes: 0 })
+        listOption.concat({ title: value, count_votes: 0 })
       )
   }
 

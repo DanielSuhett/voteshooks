@@ -8,6 +8,8 @@ import Singup from '../pages/Singup';
 
 import { isAuth } from './auth';
 import NavHeader from '../components/NavHeader';
+import PollVote from '../pages/PollVote';
+import Result from '../pages/Result';
 
 export const Routes = () => {
   function PrivateRoute({ component: Component, ...rest }) {
@@ -35,10 +37,14 @@ export const Routes = () => {
       <Route path="/" exact>
         <Redirect to='/polls' />
       </Route>
+
+      <Route path='/vote/:id' exact component={PollVote}/>
+      <Route path='/vote/:id/result/:index' component={Result} />
+
       
       <Route>
         <NavHeader />
-        <h1>Page not found</h1>
+        <h1 style={{ display: "flex", justifyContent: "center" }}>Page not found</h1>
       </Route>
     </Switch>
   )
