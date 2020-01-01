@@ -9,17 +9,15 @@ export default function () {
   const [listPoll, setlistPoll] = useState([]);
   const history = useHistory();
 
-  useEffect( () => {
-    const get = async () => {
+  useEffect(() => {
+    (async () => {
       try {
         const response = await API.get('/poll')
         setlistPoll(response.data)
       } catch (error) {
         alert(error)
       }
-    }
-
-    get()
+    })()
   }, [])
 
 
@@ -33,7 +31,7 @@ export default function () {
   const linkToPoll = (index) => {
     history.push(`polls/${listPoll[index]._id}`)
   }
-  
+
 
   return (
     <>
@@ -45,8 +43,15 @@ export default function () {
               <button className="itemVote" onClick={() => { linkToPoll(index) }} key={index}>
                 {poll.question}
               </button>
-              <span onClick={() => removePoll(index)} className="voted">
+              <span style={{ marginRight: "8px" }} onClick={() => removePoll(index)} className="voted">
                 <img alt="" src="img/delete.png"></img>
+              </span>
+              <span style={{ marginLeft: "8px" }} onClick={() => {
+                navigator.clipboard.writeText(`${process.env.url || 'http://localhost:3000/vote/'}${listPoll[index]._id}`)
+                alert("Link to poll copied!")
+              }
+              } className="voted">
+                <img alt="" src="img/share.png"></img>
               </span>
             </div>
           )}

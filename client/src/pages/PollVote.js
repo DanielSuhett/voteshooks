@@ -17,23 +17,24 @@ export default function (props) {
   useEffect(() => {
     (async () => {
       try {
-        const response = await API.get(`/poll/${props.match.params.id}`)
+        const response = await API.get(`/vote/${props.match.params.id}`)
         setlistOption(response.data.options)
-        setQuestion({ ...question, title: response.data.question }) 
+
+        setQuestion({ ...question, title: response.data.question })
       } catch (error) {
         alert(error)
       }
     })()
-  }, [question, props.match.params.id])
+  }, [])
 
   const handleVote = async (index) => {
     const updateList = listOption.map((option, ondex) => {
-      if(index === ondex)
+      if (index === ondex)
         option = { ...option, count_votes: option.count_votes + 1 };
       return option
     })
 
-    await API.put(`/poll/${props.match.params.id}`, { question: question.title, options: updateList })
+    await API.put(`/vote/${props.match.params.id}`, { question: question.title, options: updateList })
 
     history.push(`/vote/${props.match.params.id}/result/${index}`)
   }
@@ -42,16 +43,24 @@ export default function (props) {
 
   return (
     <>
-      <Title question={question} />
+      <span style={{ marginLeft: 50 }}><Title question={question} /></span>
       <div className="container">
         <ul>
           {listOption.map((vote, index) =>
-            <div key={index}  className="subcontent">
+            <div key={index} style={{ justifyContent: "center" }} className="subcontent">
               <button onClick={() => { handleVote(index) }} className="itemVote" key={index}> {vote.title} </button>
             </div>
           )}
         </ul>
+
       </div>
+      <span style={{ display: "flex", justifyContent: "center" }} onClick={() => {
+        navigator.clipboard.writeText(`${process.env.url || 'http://localhost:3000/vote/'}${props.match.params.id}`)
+        alert("Link to poll copied!")
+      }
+      } className="voted">
+        <img alt="" src="/img/share.png"></img>
+      </span>
       <Footer></Footer>
     </>
   );

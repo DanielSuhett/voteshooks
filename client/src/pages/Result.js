@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import "../css/App.css";
 import Footer from "../components/Footer";
 import Title from '../components/Title';
-import { useHistory } from 'react-router-dom';
 import API from "../services/api";
 
 export default function (props) {
@@ -17,14 +16,14 @@ export default function (props) {
   useEffect(() => {
     (async () => {
       try {
-        const response = await API.get(`/poll/${props.match.params.id}`)
+        const response = await API.get(`/vote/${props.match.params.id}`);
         setlistOption(response.data.options)
         setQuestion({ ...question, title: response.data.question }) 
       } catch (error) {
         alert(error)
       }
     })();
-  }, [question, props.match.params.id])
+  }, [])
 
   return (
     <>

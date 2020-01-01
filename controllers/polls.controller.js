@@ -55,7 +55,6 @@ exports.getPolls = (req, res) => {
 
 exports.getPoll = (req, res) => {
   pollModel.findOne({
-    userId: decodeTokenUserId(req.headers["x-access-token"]), 
     _id: new mongoose.mongo.ObjectID(req.params.id)
   },
     (err, poll) => {
@@ -74,7 +73,6 @@ exports.getPoll = (req, res) => {
 
 exports.updatePoll = (req, res) => {
   pollModel.findOneAndUpdate({
-     userId: decodeTokenUserId(req.headers["x-access-token"]),
     _id: new mongoose.mongo.ObjectID(req.params.id)
   },
   { question: req.body.question, options: req.body.options },

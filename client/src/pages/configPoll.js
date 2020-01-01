@@ -19,14 +19,14 @@ export default function (props) {
   useEffect(() => {
     (async () => {
       try {
-        const response = await API.get(`/poll/${props.match.params.id}`)
+        const response = await API.get(`/poll/${props.match.params.id}`);
         setlistOption(response.data.options)
         setQuestion({ ...question, title: response.data.question }) 
       } catch (error) {
         alert(error)
       }
     })()
-  }, [props.match.params.id, question])
+  }, [])
 
   const handleEditQuestion = (value) => {
     setQuestion({ ...question, title: value })
