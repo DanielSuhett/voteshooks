@@ -11,7 +11,7 @@ function navHeader(props) {
 
   return (
     <div className="navbar">
-      <span className="navTitle"><p className="Titletext">Votehooks</p></span>
+      <span className="navTitle"><h1 className="TitlenavText">Votehooks</h1></span>
       <div className="buttonBlock">
 
 

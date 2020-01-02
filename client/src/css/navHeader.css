@@ -3,28 +3,31 @@
   width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
-  border-bottom: 1px solid gray;
 }
 
 button {
   background: none;
   border-radius: 5px;
-  color: white;
-  border: 0.5px gray solid;
+  border: none;
   font-size: 20px;
+  background-color: tomato;
   margin: 5px;
+  color: #333333;
 }
 
 .navTitle {
   width: 70%;
   height: 50px;
   display: inline-flex;
-  font-size: 32px;
 }
 
-.Titletext {
+.TitlenavText {
   color: white;
   margin: auto 10px;
+  background-color: tomato;
+  padding: 10px;
+
+
 }
 
 .buttonLogin, .buttonHome {
@@ -33,8 +36,8 @@ button {
 }
 
 .buttonLogin:hover, .buttonHome:hover{
-  background-color: gray;
-  color: white;
+  background-color: white;
+  color: tomato;
   transition-timing-function: ease-in-out;
   transition: 0.2s;
   border-radius: 5px;

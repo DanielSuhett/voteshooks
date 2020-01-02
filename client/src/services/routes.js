@@ -5,11 +5,11 @@ import listPoll from '../pages/PollsList';
 import createPoll from '../pages/createPoll';
 import configPoll from "../pages/configPoll";
 import Singup from '../pages/Singup';
-
 import { isAuth } from './auth';
 import NavHeader from '../components/NavHeader';
 import PollVote from '../pages/PollVote';
 import Result from '../pages/Result';
+import Home from '../pages/Home';
 
 export const Routes = () => {
   function PrivateRoute({ component: Component, ...rest }) {
@@ -34,8 +34,7 @@ export const Routes = () => {
       <Route path="/singin" component={Login} />
       <Route path="/singup" component={Singup} />
 
-      <Route path="/" exact>
-        <Redirect to='/polls' />
+      <Route path="/" exact component={Home}>
       </Route>
 
       <Route path='/vote/:id' exact component={PollVote}/>

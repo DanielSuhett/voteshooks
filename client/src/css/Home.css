@@ -1,0 +1,26 @@
+.containerHome {
+  display: flex;
+  margin-top: 5%;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10%;
+}
+
+.taskHomeImg img {
+  width: 400px;
+}
+
+.taskHomeImg{
+  display: flex;
+
+  margin-right: 2%;
+}
+
+.subtitleHome {
+  font-size: 32px;
+  list-style-type:  none;
+}
+
+li {
+  text-decoration: none;
+}
